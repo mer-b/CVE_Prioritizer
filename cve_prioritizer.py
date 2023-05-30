@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     if args.output:
         with open(args.output, 'w') as output_file:
-            output_file.write("cve_id,priority,epss,cvss,cvss_version,cvss_severity,cisa_kev"+"\n")
+            output_file.write("cve_id,priority,epss,cvss,cvss_version,cvss_severity,cvss_av,cvss_ui,cvss_priv,cvss_integrity,cvss_confidentiality,cisa_kev"+"\n")
 
     for cve in cve_list:
         if not re.match("(CVE|cve-\d{4}-\d+$)", cve):
