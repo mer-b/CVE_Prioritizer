@@ -11,6 +11,7 @@ import json
 import os
 import re
 import threading
+import time
 
 from dotenv import load_dotenv
 
@@ -91,7 +92,7 @@ if __name__ == '__main__':
 
     if args.output:
         with open(args.output, 'w') as output_file:
-            output_file.write("cve_id,priority,epss,cvss,cvss_version,cvss_severity,cvss_av,cvss_ui,cvss_priv,cvss_integrity,cvss_confidentiality,cisa_kev"+"\n")
+            output_file.write("cve_id\tpriority\tepss\tcvss\tcvss_version\tcvss_severity\tcvss_av\tcvss_ui\tcvss_priv\tcvss_integrity\tcvss_confidentiality\tcisa_kev\tcpes"+"\n")
 
     for cve in cve_list:
         if not re.match("(CVE|cve-\d{4}-\d+$)", cve):
@@ -99,6 +100,7 @@ if __name__ == '__main__':
         else:
             t = threading.Thread(target=worker, args=(cve.upper().strip(), cvss_threshold, epss_threshold, args.verbose,
                                                       args.output))
+            time.sleep(0.8)
             threads.append(t)
             t.start()
 
